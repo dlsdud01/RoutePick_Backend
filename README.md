@@ -1,114 +1,253 @@
-# RoutePick 🧭
-> AI 기반 여행 일정 생성 & 경로 최적화 웹 서비스
+<div align="center">
 
-RoutePick은 여행지를 하나하나 검색하고 동선을 직접 짜야 하는 번거로움을 줄이기 위해 만든  
-**AI 기반 여행 일정 생성 및 지도 기반 경로 최적화 서비스**입니다.  
-사용자는 간단한 입력만으로 여행 일정을 추천받고, 최적의 이동 경로를 지도에서 바로 확인할 수 있습니다.
+# 🥃 Oakey
 
----
+### *위스키 라벨을 찍으면, 위스키를 알려드립니다*
 
-## 🔗 Links
-- 서비스(배포): https://routepick.store  (과금문제로 닫음)
-- Frontend Repository: https://github.com/tjoeunProject/Frontend
-- Backend Repository: https://github.com/tjoeunProject/Backend
+> **OCR + 유사 문자열 검색 + 풍미 분석**을 결합한 위스키 탐색·추천 서비스
 
----
+<br/>
 
-## 📌 프로젝트 개요
-- **프로젝트명**: RoutePick
-- **기간**: 2025.11 ~ 2025.12
-- **형태**: 팀 프로젝트
-- **역할**:
-  - 백엔드 개발
-  - 인증/인가 설계
-  - AI 서비스 연동
-  - AWS 배포 및 인프라 구성
+[![Backend](https://img.shields.io/badge/Backend-Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://github.com/tjoeun-project-02/backend)
+[![Frontend](https://img.shields.io/badge/Frontend-Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://github.com/tjoeun-project-02/frontend)
+[![OCR](https://img.shields.io/badge/OCR-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/tjoeun-project-02/backend)
+[![DB](https://img.shields.io/badge/DB-Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white)](https://github.com/tjoeun-project-02/backend)
+[![Deploy](https://img.shields.io/badge/Deploy-AWS-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white)](https://github.com/tjoeun-project-02/backend)
+
+</div>
 
 ---
 
-## ✨ 주요 기능
-- 회원가입 / 로그인 (JWT 기반 인증)
-- 여행지 검색 및 선택
-- **AI 기반 여행 일정 자동 생성**
-- Google Maps를 활용한 경로 시각화
-- 여행 일정 저장 및 조회
-- 리뷰 및 좋아요 기능
-- 사용자 맞춤 여행 루트 관리
+## 📌 프로젝트 소개
+
+위스키는 이름이 영어고 라벨 폰트도 특이해서, **초보자가 제품명을 정확히 몰라 검색에 실패하는 경우**가 많습니다.
+
+Oakey는 이 문제를 해결하기 위해 만든 서비스입니다.
+
+> 라벨 사진 한 장 → OCR 텍스트 추출 → 유사 문자열 매칭 → 위스키 정보 + 풍미 + 리뷰 제공
+
+정확한 이름을 몰라도, 라벨 이미지만 있으면 위스키를 찾을 수 있습니다.
 
 ---
 
-## 🧑‍💻 구현 내용
+## 👩‍💻 내 담당 역할
 
-### 1️⃣ 백엔드 API 설계 및 구현
-- Spring Boot 기반 REST API 설계
-- 여행 일정, 장소, 리뷰 도메인 구조 설계
-- JPA를 활용한 데이터베이스 연동 및 CRUD 구현
+> ※ 이 레포지토리는 팀 프로젝트에서 **백엔드 서버 구축 및 AWS 배포를 담당한 본인의 작업 기록**입니다.
+> Flutter 프론트엔드는 팀원이 담당했습니다.
+> 원본 팀 레포 → [tjoeun-project-02/backend](https://github.com/tjoeun-project-02/backend)
 
----
-
-### 2️⃣ JWT 인증 / 인가 처리
-- Spring Security + JWT 기반 인증 구조 설계
-- Access Token을 이용한 API 접근 제어
-- 프론트엔드와 분리된 환경에서도 안정적인 인증 처리 구현
-- hashid를 사용하여 보안 강화화
----
-
-### 3️⃣ AI 일정 생성 서비스 연동
-- Python 기반 AI 서비스와 백엔드 간 REST 통신 설계
-- AI가 생성한 일정 데이터를 가공하여 DB에 저장
-- AI 로직 변경 시 메인 서버에 영향이 없도록 구조 분리
+| 영역 | 담당 내용 |
+|------|-----------|
+| **DB 설계** | ERD 설계, Oracle 테이블 정의, 관계 설정 |
+| **Spring Boot 서버** | 기초 CRUD API 구축, REST 엔드포인트 설계 |
+| **JWT 인증** | Access / Refresh Token 인증 흐름 적용 |
+| **OCR 배포 파이프라인** | Python OCR → Docker 이미지 빌드 → ECR → Lambda 컨테이너 배포 |
+| **AWS 인프라 구성** | EC2(Spring Boot), RDS(Oracle), S3, ECR, Lambda 연결 및 배포 |
+| **유사도 검색 검토** | OCR 오탈자 대응을 위한 Jaro-Winkler 기반 검색 방식 검토 및 적용 |
 
 ---
 
-### 4️⃣ AWS 배포 및 운영 환경 구성
-- S3를 이용한 프론트엔드 정적 사이트 호스팅
-- EC2에 Spring Boot 서버 배포
-- Lambda + API Gateway 기반 AI 서비스 구성
-- CORS 설정 및 배포 환경 네트워크 이슈 해결
+## 🗂️ 레포지토리 구성
+
+| 레포 | 내용 |
+|------|------|
+| [`backend`](https://github.com/tjoeun-project-02/backend) | Spring Boot API 서버 (`/sts`) + Python OCR 서비스 (`/python`) |
+| [`frontend`](https://github.com/tjoeun-project-02/frontend) | Flutter 앱 (Android / iOS) |
+
+---
+
+## ✨ 핵심 기능
+
+### 📷 라벨 OCR 검색
+위스키 라벨을 촬영하면 Python OCR 서비스가 텍스트를 추출합니다.
+OCR 결과가 완벽하지 않은 상황을 고려해, **정확 일치가 아닌 유사 문자열 기반으로 후보를 탐색**합니다.
+
+```
+사용자 촬영 → OCR 추출 (e.g. "springbanr")
+         → 유사도 기반 검색 (Springbank 매칭)
+         → 상위 후보 제공
+```
+
+### 🥃 위스키 상세 정보
+외부 데이터(whiskybase 크롤링 + 오픈 CSV)를 수집·정제한 위스키 데이터를 제공합니다.
+
+| 정보 항목 | 내용 |
+|----------|------|
+| 기본 정보 | 이름, 증류소, 카테고리, 숙성 연수, 도수(ABV), 가격, 평점 |
+| 리뷰 | Nose / Taste / Finish / Overall 구조화 리뷰 |
+| 풍미 | Fruity · Sweet · Peaty · Spicy · Woody · Malty (비율 합 100) |
+
+### 🎯 풍미 기반 추천
+설문을 통해 사용자 취향을 파악하고, 풍미 벡터를 기반으로 위스키를 추천합니다. *(설계 및 일부 구현)*
+
+### 🔐 인증
+Spring Security + JWT (Access / Refresh Token) 기반 인증을 적용했습니다. *(Kakao 소셜 로그인은 구조 설계 수준으로 진행)*
+
+---
+
+## 🏗️ 아키텍처
+
+```
+┌──────────────────────────────────────────────────────┐
+│                   Flutter App (Android/iOS)           │
+└───────────────────────┬──────────────────────────────┘
+                        │ REST API
+          ┌─────────────▼──────────────┐
+          │   Spring Boot (EC2)         │
+          │   - JWT 인증                │
+          │   - 위스키 CRUD             │
+          │   - 검색 / 추천 API         │
+          └──────┬──────────┬──────────┘
+                 │          │
+    ┌────────────▼──┐  ┌────▼──────────────────┐
+    │  Oracle DB    │  │  Python OCR Service    │
+    │  (RDS)        │  │  Docker → ECR → Lambda │
+    └───────────────┘  └────────────────────────┘
+
+  정적 파일 → S3
+```
 
 ---
 
 ## 🛠️ 기술 스택
 
-### Frontend
-- React
-- Vite
-- JavaScript
-- Axios
-
 ### Backend
-- Spring Boot
-- Spring Security
-- JPA (Hibernate)
-- JWT
 
-### AI / External API
-- Python
-- Gemini / OpenAI API
-- Google Maps API
-- SerpAPI
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 
-### Infrastructure
-- AWS S3
-- AWS EC2
-- AWS RDS
-- AWS Lambda
-- AWS API Gateway
-- AWS Route 53
+### Frontend *(팀원 담당)*
+
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
+
+### Infra / Deploy
+
+![AWS EC2](https://img.shields.io/badge/EC2-FF9900?style=flat-square&logo=amazonec2&logoColor=white)
+![AWS RDS](https://img.shields.io/badge/RDS-527FFF?style=flat-square&logo=amazonrds&logoColor=white)
+![AWS S3](https://img.shields.io/badge/S3-569A31?style=flat-square&logo=amazons3&logoColor=white)
+![AWS ECR](https://img.shields.io/badge/ECR-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white)
+![AWS Lambda](https://img.shields.io/badge/Lambda-FF9900?style=flat-square&logo=awslambda&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 
 ---
 
+## 📊 DB 설계
 
-## 🧱 시스템 아키텍처
+```
+tb_user        사용자 계정 (이메일, 닉네임, 권한, 생성일시)
+tb_social      소셜 로그인 연동 (provider, provider_id, user_id)
+tb_whisky      위스키 마스터 (이름, 증류소, 카테고리, 도수, 평점, 이미지 ...)
+tb_review      구조화 리뷰 (nose / taste / finish / overall)
+tb_comment     사용자 댓글
+tb_flavor      풍미 키워드 (대표 3개, 비율 합 100)
+```
 
-Client Browser  
-↓  
-Frontend (AWS S3)  
-↓  
-Backend (Spring Boot / EC2)  
-↓  
-AI Service (AWS Lambda / Python)  
-↓  
-External APIs / RDS  
+---
 
+## 🚀 배포 구조
 
+| 서비스 | 배포 방식 |
+|--------|-----------|
+| Spring Boot API | JAR 빌드 → **EC2** 실행 |
+| Python OCR | Docker 이미지 → **ECR** → **Lambda** 컨테이너 이미지 배포 |
+| 정적 파일 | **S3** 업로드 |
+| DB | **RDS** (Oracle) |
+
+> Lambda는 컨테이너 이미지 방식으로 배포해, 의존성이 많은 Python OCR 환경을 그대로 패키징했습니다.
+
+---
+
+## 📁 프로젝트 구조
+
+```
+backend/
+├── sts/               # Spring Boot 메인 서버
+│   ├── config/        # Security, JWT, OAuth2 설정
+│   ├── controller/    # API 엔드포인트
+│   ├── service/       # 비즈니스 로직
+│   ├── repository/    # Oracle DB 연동
+│   └── entity/        # 도메인 모델 (whisky, user, review, flavor ...)
+├── python/            # OCR 서비스 (Docker 이미지 대상)
+└── requirements.txt   # Python 의존성
+
+frontend/
+├── lib/               # Flutter 앱 소스
+│   ├── screens/       # 화면 구성
+│   ├── widgets/       # 공통 컴포넌트
+│   └── services/      # API 통신
+└── assets/            # 이미지, 폰트 등 정적 자원
+```
+
+---
+
+## 🔧 트러블슈팅
+
+### 1. OCR 오탈자 대응 — 유사도 기반 검색
+
+**문제** : OCR 결과가 완벽하지 않아 정확 일치 검색이 실패하는 경우 발생
+```
+DB    → Springbank
+OCR   → springbanr   (오인식)
+```
+
+**시도한 방향** : Oracle `UTL_MATCH` 패키지의 `EDIT_DISTANCE` / `JARO_WINKLER_SIMILARITY` 함수를 검토했으나, 일반 계정 실행 시 권한 오류 발생
+```
+ORA-01031: insufficient privileges
+→ SYS 레벨 GRANT EXECUTE 필요
+```
+
+**해결** : Oracle DB 레벨 적용이 어려워 **애플리케이션 레벨에서 Jaro-Winkler 유사도를 직접 계산**하는 방식으로 전환하여 후보 위스키를 탐색하도록 구현
+
+---
+
+### 2. JWT WeakKeyException
+
+**문제** : JWT 시크릿 키 설정 후 서버 기동 시 예외 발생
+```
+WeakKeyException: Key length too short for HMAC-SHA256
+```
+
+**원인** : JWA 스펙상 HMAC-SHA256은 256비트(32자) 이상의 키를 요구하는데, 짧은 문자열을 입력
+
+**해결** : 충분한 길이의 랜덤 키로 변경, Access/Refresh Token 만료 시간 별도 설정으로 분리
+```yaml
+oakey.jwt.secret: <256비트 이상 랜덤 키>
+oakey.jwt.access-exp-seconds: 3600
+oakey.jwt.refresh-exp-seconds: 604800
+```
+
+---
+
+### 3. Spring Security 빈 초기화 문제
+
+**문제** : `JwtAuthenticationFilter`, `JwtTokenProvider` 등 보안 관련 빈 설정 중 기동 실패
+```
+UnsatisfiedDependencyException
+```
+
+**해결** : 빈 등록 순서 정리 및 Security 설정 분리, 필터 체인 구조 재구성
+
+---
+
+### 4. Lambda 배포 환경 변수 누락
+
+**문제** : Docker 이미지를 ECR에 올리고 Lambda로 배포했을 때 함수가 실행되지 않음
+
+**원인** : Lambda 콘솔에 환경 변수가 등록되지 않아 OCR 서비스 내 설정값을 읽지 못한 것이 원인임을 CloudWatch 로그에서 확인
+
+**해결** : Lambda 콘솔 환경 변수 항목에 필요한 값을 등록 후 정상 실행 확인
+
+---
+
+<div align="center">
+
+[![Backend Repo](https://img.shields.io/badge/팀_Backend_Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tjoeun-project-02/backend)
+[![Frontend Repo](https://img.shields.io/badge/팀_Frontend_Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tjoeun-project-02/frontend)
+[![Portfolio](https://img.shields.io/badge/포트폴리오-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dlsdud01/portfolio)
+
+</div>
