@@ -244,6 +244,20 @@ UnsatisfiedDependencyException
 
 ---
 
+---
+
+## 🔁 원본 레포지토리 안내
+
+> 이 레포지토리는 팀 프로젝트 원본을 **포크하여 본인의 담당 역할 기록용으로 재구성**한 것입니다.
+> 실제 코드와 전체 협업 내역은 아래 원본 팀 레포지토리에서 확인하실 수 있습니다.
+
+| 구분 | 링크 |
+|------|------|
+| 🖥️ **백엔드 원본** (Spring Boot + Python OCR) | https://github.com/tjoeun-project-02/backend |
+| 📱 **프론트엔드 원본** (Flutter) | https://github.com/tjoeun-project-02/frontend |
+
+---
+
 <div align="center">
 
 [![Backend Repo](https://img.shields.io/badge/팀_Backend_Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tjoeun-project-02/backend)
